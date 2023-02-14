@@ -1,0 +1,234 @@
+<html>
+
+<head>
+	<title>Padaria Jhonson</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<h1>Padaria Jhonson</h1>
+	<div class="box">
+		<div class="foodbars">
+			<h3>Calculadora</h3>
+			<div class="food1">
+				<div class="namefood">
+					<label>Churrasco de Picanha:</label>
+				</div>
+				<div class="buttonsbars">
+					<input type="number" name="churrascodepicanha" id="churrascodepicanha" value="0"
+						oninput="somaTotal()">
+					<button onclick="somaUmchurrascodepicanha()">+1</button>
+					<button onclick="somaCincochurrascodepicanha()">+5</button>
+					<button onclick="zerachurrascodepicanha()">Zerar</button>
+				</div>
+			</div>
+			<div class="food2">
+				<div class="buttonsbars">
+					<div class="namefood">
+						<label>Pão Caseiro:</label>
+					</div>
+					<input type="number" name="paocaseiro" id="paocaseiro" value="0" oninput="somaTotal()">
+					<button onclick="somaUmpaocaseiro()">+1</button>
+					<button onclick="somaCincopaocaseiro()">+5</button>
+					<button onclick="zerapaocaseiro()">Zerar</button>
+				</div>
+			</div>
+			<div class="food3">
+				<div class="buttonsbars">
+					<div class="namefood">
+						<label>Pão de queijo:</label>
+					</div>
+					<input type="number" name="paodequeijo" id="paodequeijo" value="0" oninput="somaTotal()">
+					<button onclick="somaUmpaodequeijo()">+1</button>
+					<button onclick="somaCincopaodequeijo()">+5</button>
+					<button onclick="zerapaodequeijo()">Zerar</button>
+				</div>
+			</div>
+			<div class="food4">
+				<div class="buttonsbars">
+					<div class="namefood">
+						<label>Café:</label>
+					</div>
+					<input type="number" name="cafe" id="cafe" value="0" oninput="somaTotal()">
+					<button onclick="somaUmcafe()">+1</button>
+					<button onclick="somaCincocafe()">+5</button>
+					<button onclick="zeracafe()">Zerar</button>
+				</div>
+			</div>
+			<div class="food5">
+				<div class="buttonsbars">
+					<div class="namefood">
+						<label>Quentão:</label>
+					</div>
+					<input type="number" name="quentao" id="quentao" value="0" oninput="somaTotal()">
+					<button onclick="somaUmquentao()">+1</button>
+					<button onclick="somaCincoquentao()">+5</button>
+					<button onclick="zeraquentao()">Zerar</button>
+				</div>
+			</div>
+			<div class="whiteinfos">
+				<h2><label id="total">Valor a cobrar do cliente: $ 0.0</label></h2>
+				<h2><label id="totalGerente">Valor pagar ao gerente: $ 0.0</label></h2>
+				<h2><label id="totalLucro">Valor meu lucro (exceto consumo): $ 0.0</label></h2>
+			</div>
+			<div class="btns-info">
+				<button onclick="salvarVenda()">Salvar venda</button>
+				<button onclick="salvarConsumo()">Salvar consumo</button>
+			</div>
+		</div>
+		<div class="textarea">
+			<h3>Relatório de Vendas e Consumos</h3>
+			<textarea id="relatorio" rows="21" cols="50"></textarea>
+			<br>
+			<div class="btns-info">
+				<button onclick="copiar()">Copiar relatório</button>
+				<button onclick="resetar()">Resetar relatório</button>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script type="text/javascript">
+	var churrascodepicanhas = 0;
+	var paocaseiros = 0;
+	var paodequeijos = 0;
+	var cafes = 0;
+	var quentaos = 0;
+	var consumichurrascodepicanhas = 0;
+	var consumipaocaseiros = 0;
+	var consumipaodequeijos = 0;
+	var consumicafes = 0;
+	var consumiquentaos = 0;
+	var total = 0;
+	var totalLucro = 0;
+	var totalGerente = 0;
+	var totalSalvo = 0;
+	var totalGerenteSalvo = 0;
+
+	function somaTotal() {
+		total = document.getElementById("churrascodepicanha").value * 0.7;
+		total += document.getElementById("paocaseiro").value * 0.4;
+		total += document.getElementById("paodequeijo").value * 0.35;
+		total += document.getElementById("cafe").value * 0.2;
+		total += document.getElementById("quentao").value * 0.6;
+		total = Math.round(total * 100) / 100;
+		document.getElementById("total").textContent = "Valor a cobrar do cliente: $ " + total;
+		totalGerente = document.getElementById("churrascodepicanha").value * 0.42
+		totalGerente += document.getElementById("paocaseiro").value * 0.25;
+		totalGerente += document.getElementById("paodequeijo").value * 0.25;
+		totalGerente += document.getElementById("cafe").value * 0.15;
+		totalGerente += document.getElementById("quentao").value * 0.35;
+		totalGerente = Math.round(totalGerente * 100) / 100;
+		document.getElementById("totalGerente").textContent = "Valor pagar ao gerente: $ " + totalGerente;
+		totalLucro = document.getElementById("churrascodepicanha").value * 0.28;
+		totalLucro += document.getElementById("paocaseiro").value * 0.15;
+		totalLucro += document.getElementById("paodequeijo").value * 0.10;
+		totalLucro += document.getElementById("cafe").value * 0.05;
+		totalLucro += document.getElementById("quentao").value * 0.25;
+		totalLucro = Math.round(totalLucro * 100) / 100;
+		document.getElementById("totalLucro").textContent = "Valor meu lucro (exceto consumo): $ " + totalLucro;
+	}
+
+	relatorio();
+
+	function salvarVenda() {
+		churrascodepicanhas += parseInt(document.getElementById("churrascodepicanha").value);
+		paocaseiros += parseInt(document.getElementById("paocaseiro").value);
+		paodequeijos += parseInt(document.getElementById("paodequeijo").value);
+		cafes += parseInt(document.getElementById("cafe").value);
+		quentaos += parseInt(document.getElementById("quentao").value);
+		totalGerenteSalvo += totalGerente;
+		totalSalvo += total;
+		totalGerente = 0;
+		total = 0;
+		relatorio();
+	}
+
+	function salvarConsumo() {
+		consumichurrascodepicanhas += parseInt(document.getElementById("churrascodepicanha").value);
+		consumiquentaos += parseInt(document.getElementById("quentao").value);
+		consumicafes += parseInt(document.getElementById("cafe").value);
+		consumipaodequeijos += parseInt(document.getElementById("paodequeijo").value);
+		consumipaocaseiros += parseInt(document.getElementById("paocaseiro").value);
+		relatorio();
+	}
+
+	function relatorio() {
+		document.getElementById("churrascodepicanha").value = 0;
+		document.getElementById("paocaseiro").value = 0;
+		document.getElementById("paodequeijo").value = 0;
+		document.getElementById("cafe").value = 0;
+		document.getElementById("quentao").value = 0;
+		somaTotal();
+		var texto = "```";
+		texto += "Vendido até o momento: \n";
+		texto += "\n- churrascodepicanhas: " + churrascodepicanhas;
+		texto += "\n- paocaseiros: " + paocaseiros;
+		texto += "\n- paodequeijos: " + paodequeijos;
+		texto += "\n- cafes: " + cafes;
+		texto += "\n- quentaos: " + quentaos;
+		texto += "\n\nConsumi até o momento: \n";
+		texto += "\n- churrascodepicanhas: " + consumichurrascodepicanhas;
+		texto += "\n- paocaseiros: " + consumipaocaseiros;
+		texto += "\n- paodequeijos: " + consumipaodequeijos;
+		texto += "\n- cafes: " + consumicafes;
+		texto += "\n- quentaos: " + consumiquentaos;
+		var totalConsumo = consumichurrascodepicanhas * 0.15;
+		totalConsumo += consumiquentaos * 0.18;
+		totalConsumo += consumicafes * 0.20;
+		totalConsumo += consumipaodequeijos * 0.15;
+		totalConsumo += consumipaocaseiros * 0.23;
+		var saldo = Math.round((totalSalvo - totalGerenteSalvo) * 100) / 100;
+		var saldo1 = Math.round(totalSalvo * 100) / 100;
+		var saldo2 = Math.round(totalGerenteSalvo * 100) / 100;
+		var saldo3 = Math.round(totalConsumo * 100) / 100;
+		var saldo4 = Math.round((saldo2 + saldo3) * 100) / 100;
+		var saldo5 = Math.round((saldo - saldo3) * 100) / 100;
+		var saldo6 = Math.round((saldo - saldo3) * 100) / 100;
+		texto += "\n\n+ Vendi um total de $ " + saldo1;
+		texto += "\n+ Meu lucro até o momento foi de $ " + saldo6;
+		texto += "\n+ Consumi um total de $ " + saldo3;
+		texto += "\n\n+ Ficarei com $ " + saldo5;
+		texto += "\n+ E para o gerente ficará $ " + saldo4;
+		texto += "```";
+		document.getElementById("relatorio").value = texto;
+	}
+
+	function resetar() {
+		churrascodepicanhas = 0;
+		paocaseiros = 0;
+		paodequeijos = 0;
+		cafes = 0;
+		quentaos = 0;
+		consumichurrascodepicanhas = 0;
+		consumipaocaseiros = 0;
+		consumipaodequeijos = 0;
+		consumicafes = 0;
+		consumiquentaos = 0;
+		total = 0;
+		totalLucro = 0;
+		totalGerente = 0;
+		totalSalvo = 0;
+		totalGerenteSalvo = 0;
+		somaTotal();
+		relatorio();
+	}
+
+	function copiar() { navigator.clipboard.writeText(document.getElementById("relatorio").value); }
+	function somaUmchurrascodepicanha() { document.getElementById("churrascodepicanha").value = parseInt(document.getElementById("churrascodepicanha").value) + 1; somaTotal(); }
+	function somaCincochurrascodepicanha() { document.getElementById("churrascodepicanha").value = parseInt(document.getElementById("churrascodepicanha").value) + 5; somaTotal(); }
+	function somaUmpaocaseiro() { document.getElementById("paocaseiro").value = parseInt(document.getElementById("paocaseiro").value) + 1; somaTotal(); }
+	function somaCincopaocaseiro() { document.getElementById("paocaseiro").value = parseInt(document.getElementById("paocaseiro").value) + 5; somaTotal(); }
+	function somaUmpaodequeijo() { document.getElementById("paodequeijo").value = parseInt(document.getElementById("paodequeijo").value) + 1; somaTotal(); }
+	function somaCincopaodequeijo() { document.getElementById("paodequeijo").value = parseInt(document.getElementById("paodequeijo").value) + 5; somaTotal(); }
+	function somaUmcafe() { document.getElementById("cafe").value = parseInt(document.getElementById("cafe").value) + 1; somaTotal(); }
+	function somaCincocafe() { document.getElementById("cafe").value = parseInt(document.getElementById("cafe").value) + 5; somaTotal(); }
+	function somaUmquentao() { document.getElementById("quentao").value = parseInt(document.getElementById("quentao").value) + 1; somaTotal(); }
+	function somaCincoquentao() { document.getElementById("quentao").value = parseInt(document.getElementById("quentao").value) + 5; somaTotal(); }
+	function zerachurrascodepicanha() { document.getElementById("churrascodepicanha").value = 0; somaTotal(); }
+	function zerapaocaseiro() { document.getElementById("paocaseiro").value = 0; somaTotal(); }
+	function zerapaodequeijo() { document.getElementById("paodequeijo").value = 0; somaTotal(); }
+	function zeracafe() { document.getElementById("cafe").value = 0; somaTotal(); }
+	function zeraquentao() { document.getElementById("quentao").value = 0; somaTotal(); }
+</script>
+</html>

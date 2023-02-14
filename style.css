@@ -1,0 +1,124 @@
+body {
+    background-color: rgb(165, 141, 82);
+    background-image: url(./img/image.png);
+    background-size: 200px;
+}
+
+h1 {
+    text-align: center;
+    font-family: beau;
+    font-size: 70px;
+    color: white;
+}
+
+h3 {
+    text-align: center;
+    font-family: beau;
+    font-size: 40px;
+    color: white;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.box {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin-left: 5%;
+}
+
+@font-face {
+    font-family: beau;
+    src: url(./font/BeauRivage-Regular.ttf);
+}
+
+.food1,
+.food2,
+.food3,
+.food4,
+.food5 {
+    font-family: beau;
+    color: white;
+    font-size: 48px;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    width: 900px;
+}
+
+input {
+    width: 120px;
+    height: 50px;
+    font-size: 30px;
+    margin-right: 10px;
+    border-radius: 15px;
+    color: #777777;
+}
+
+.foodbars button {
+    width: 120px;
+    height: 50px;
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.buttonsbars {
+    display: flex;
+}
+
+.namefood {
+    width: 380px;
+}
+
+button {
+    box-shadow: inset 0px 1px 0px 0px #ffffff;
+    background: linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
+    background-color: #ededed;
+    border-radius: 15px;
+    border: 1px solid #dcdcdc;
+    display: inline-block;
+    cursor: pointer;
+    color: #777777;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #ffffff;
+}
+
+button:hover {
+    background: linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
+    background-color: #dfdfdf;
+}
+
+button:active {
+    position: relative;
+    top: 1px;
+}
+
+.whiteinfos {
+    background-color: white;
+    text-align: center;
+    width: 70%;
+    margin-left: 15%;
+}
+
+.btns-info {
+    margin: 20px;
+    display: flex;
+}
+
+.btns-info button {
+    width: 380px;
+    font-size: 30px;
+    margin: 10px;
+}
+
+#relatorio {
+    font-size: 20px;
+    height: 520px;
+    margin-left: 11.5%;
+    margin-top: 25px;
+}
